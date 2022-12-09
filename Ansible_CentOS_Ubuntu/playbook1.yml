@@ -1,0 +1,26 @@
+---
+  - hosts: ubuntu
+    become: yes
+    tasks:
+    - name: update
+      shell: apt -y update && apt -y upgrade
+    - name: PHP
+      shell: apt -y install php     
+    - name: install nginx
+      apt:
+        name: ['nginx']
+        state: latest
+    - name: www
+      file:
+        path: /var/www/
+        state: directory
+        mode: '0755'
+        owner: "nginx"
+        group: "nginx"     
+    handlers:
+      - name: reload
+        service:
+          name: nginx
+          state: restarted
+
+      
