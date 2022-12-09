@@ -1,9 +1,9 @@
 ---
-- hosts: srv_task_1
-    tasks: 
-    - name: nginx on a whale
-      docker_container:
-        image: nginx:stable
-        state: started
-        ports: 
-          - "8080:80"
+- hosts: all 
+  tasks: 
+  - name: nginx on a whale
+    docker_container:
+      image: nginx:stable
+      state: started
+      ports: 
+        - "8080:80"
